@@ -1,5 +1,7 @@
 import { makeStyles } from '@mui/styles';
 
+const drawerWidth = 240;
+
 export default makeStyles((theme) => ({
   toolbar: {
     height: '80px',
@@ -14,9 +16,26 @@ export default makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2), // theme.spacing(2) is 8px that will give all the same spacing.
+    // backgroundColor: 'green',
     // the following will only show on devices higher than small (NOT mobile devices...)
     [theme.breakpoints.up('sm')]: {
       display: 'none',
+      // backgroundColor: 'red',
+    },
+  },
+  drawer: {
+    [theme.breakpoints.up('sm')]: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+    drawerPaper: {
+      width: drawerWidth,
+    },
+    linkButton: {
+      '&:hover': {
+        color: 'white !important',
+        textDecoration: 'none',
+      },
     },
   },
 }));
