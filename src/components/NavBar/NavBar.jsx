@@ -83,7 +83,7 @@ const NavBar = () => {
         </Toolbar>
       </AppBar>
       <div>
-        <nav classname={classes.drawer}>
+        <nav className={classes.drawer}>
           {isMobile ? (
             <Drawer
               variant="temporary"
