@@ -9,9 +9,11 @@ const Movie = ({ movie, index }) => {
   console.log(movie, index);
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2} className={classes.movie}>
-      <Typography className={classes.title} variant="h5">
-        {movie.title}
-      </Typography>
+      <Grow in key={index} timeout={(index + 1) * 250}>
+        <Typography className={classes.title} variant="h5">
+          {movie.title}
+        </Typography>
+      </Grow>
     </Grid>
   );
 };
