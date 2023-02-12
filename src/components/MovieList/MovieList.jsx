@@ -12,10 +12,9 @@ const MovieList = ({ movies }) => {
       {movies.results.map((movie, index) => (
         <Movie key={index} movie={movie} index={index} />
       ))}
+      {/* <h2>Hello World</h2> */}
     </Grid>
   );
 };
 
 export default MovieList;
-
-// 11 min mark
