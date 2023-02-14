@@ -13,6 +13,7 @@ import MovieList from '../MovieList/MovieList';
 
 const Movies = () => {
   const { data, error, isFetching } = useGetMoviesQuery();
+  console.log('Movies data', data);
   if (isFetching) {
     return (
       <Box display="flex" justifyContent="center">
@@ -34,7 +35,7 @@ const Movies = () => {
   }
 
   if (error) return 'An error has occurred';
-  console.log('Movies data', data);
+  console.log('Movies data', data, error);
 
   return (
     <div>
