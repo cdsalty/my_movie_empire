@@ -12,7 +12,8 @@ import {
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
 import { useGetGenresQuery } from '../../services/TMDB';
 import useStyles from './styles';
 import genreIcons from '../../assets/genres';
@@ -34,6 +35,7 @@ const SideBar = ({ setMobileOpen }) => {
   const classes = useStyles();
   const { data, isFetching, error } = useGetGenresQuery();
   console.log('SIDEBAR data', data);
+  const dispatch = useDispatch();
   return (
     <>
       <Link to="/" className={classes.imageLink}>
@@ -46,11 +48,13 @@ const SideBar = ({ setMobileOpen }) => {
       <Divider />
       <List>
         <ListSubheader>Categories</ListSubheader>
-        {/* destructure the label and value from demoCategories */}
         {categories.map(({ label, value }) => (
           // what to display?
           <Link key={value} className={classes.links} to={`/`}>
-            <ListItem button onClick={() => {}}>
+            <ListItem
+              button
+              onClick={() => dispatch(selectGenreOrCategory(value))}
+            >
               <ListItemIcon>
                 <img
                   src={genreIcons[label.toLowerCase()]}
@@ -75,7 +79,10 @@ const SideBar = ({ setMobileOpen }) => {
           data.genres.map(({ name, id }) => (
             // what to display?
             <Link key={name} className={classes.links} to={`/`}>
-              <ListItem onClick={() => {}} button>
+              <ListItem
+                onClick={() => dispatch(selectGenreOrCategory(id))}
+                button
+              >
                 <ListItemIcon>
                   <img
                     src={genreIcons[name.toLowerCase()]}
