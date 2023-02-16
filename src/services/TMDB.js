@@ -15,7 +15,26 @@ export const tmdbApi = createApi({
     // Get Movies By [type]
     getMovies: builder.query({
       // return the endpoint of the url here
-      query: () => `/movie/popular?page=${page}&api_key=${tmdbApiKey}`,
+      // query: () => `/movie/popular?page=${page}&api_key=${tmdbApiKey}`, // befor being updated
+      query: ({ genreIdOrCategoryName, page }) => {
+        // Get movies by category
+        if (
+          genreIdOrCategoryName &&
+          typeof genreIdOrCategoryName === 'string'
+        ) {
+          return `movie/${genreIdOrCategoryName}?page=${page}&api_key=${tmdbApiKey}`;
+        }
+        // Get movies by genre
+        if (
+          genreIdOrCategoryName &&
+          typeof genreIdOrCategoryName === 'number'
+        ) {
+          console.log('here!');
+          return `discover/movie?with_genres=${genreIdOrCategoryName}&page=${page}&api_key=${tmdbApiKey}`;
+        }
+        // at the start, we will show the popular movies, that is why this is here.
+        return `movie/popular?page=${page}&api_key=${tmdbApiKey}`;
+      },
     }),
   }),
 });
@@ -25,3 +44,5 @@ export const { useGetMoviesQuery, useGetGenresQuery } = tmdbApi;
 // middleware: (getDefaultMiddleware) => {
 //   return getDefaultMiddleware().concat(otherMiddleware);
 // }
+
+// all of the queries will be coming back from Movies.jsx.... in the data object

@@ -31,10 +31,15 @@ const blueLogo =
   'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
 
 const SideBar = ({ setMobileOpen }) => {
+  // genreIdOrCategoryName is the current genre or category; it is coming from the initalstate in the store
+  const { genreIdOrCategoryName } = useSelector(
+    (state) => state.currentGenreOrCategory // currentGenreOrCategory is the name of the slice of state
+  ); // currentGenreOrCategory refers back to the store
   const theme = useTheme();
   const classes = useStyles();
   const { data, isFetching, error } = useGetGenresQuery();
-  console.log('SIDEBAR data', data);
+  // console.log('SIDEBAR data', data);
+  console.log({ genreIdOrCategoryName });
   const dispatch = useDispatch();
   return (
     <>
