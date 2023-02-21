@@ -1,7 +1,8 @@
+import { Search } from '@mui/icons-material';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const tmdbApiKey = process.env.REACT_APP_TMDB_KEY;
-const page = 1;
+// const page = 1;
 
 export const tmdbApi = createApi({
   reducerPath: 'tmdbApi',
@@ -16,7 +17,12 @@ export const tmdbApi = createApi({
     getMovies: builder.query({
       // return the endpoint of the url here
       // query: () => `/movie/popular?page=${page}&api_key=${tmdbApiKey}`, // befor being updated
-      query: ({ genreIdOrCategoryName, page }) => {
+      query: ({ genreIdOrCategoryName, page, searchQuery }) => {
+        // Get movies by search by adding the correct input
+        if (searchQuery) {
+          return `/search/movie?query=${searchQuery}&{page}&api_key=${tmdbApiKey}`;
+        }
+
         // Get movies by category
         if (
           genreIdOrCategoryName &&

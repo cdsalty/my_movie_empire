@@ -14,12 +14,14 @@ import MovieList from '../MovieList/MovieList';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
-  const { genreIdOrCategoryName } = useSelector(
+  // Add searchQuery to useSelector and then pass it to useGetMoviesQuery
+  const { genreIdOrCategoryName, searchQuery } = useSelector(
     (state) => state.currentGenreOrCategory
   );
   const { data, error, isFetching } = useGetMoviesQuery({
     genreIdOrCategoryName,
     page,
+    searchQuery,
   });
   // console.log('Movies component data', data.results);
   if (isFetching) {
