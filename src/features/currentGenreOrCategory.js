@@ -10,7 +10,7 @@ export const genreOrCategory = createSlice({
   reducers: {
     selectGenreOrCategory: (state, action) => {
       // console.log('action.payload', action.payload); // this will give us the category name/id
-      // TODO: Assign the payload and update the state with that value
+      // Assign the payload and update the state with that value
       state.genreIdOrCategoryName = action.payload;
       // To reset the category, we need to set the searchQuery to an empty string
       state.searchQuery = '';

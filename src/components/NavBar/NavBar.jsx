@@ -27,16 +27,24 @@ const NavBar = () => {
   // Bring in the user's state from redux
   const { isAuthenticated, user } = useSelector(userSelector);
   console.log('User coming from the navbar user: ', user);
+
   const [mobileOpen, setMobileOpen] = useState(false);
+
   const classes = useStyles();
+
   // check if the screen size is larger than 600px, if it is, then it is not mobile.
   const isMobile = useMediaQuery('(max-width:600px)');
+
   const theme = useTheme();
+
   const dispatch = useDispatch();
+
   // const isAuthenticated = false; not needed anymore since we put it in the redux state
 
   const token = localStorage.getItem('request_token');
+
   const sessionIdComingFromLocalStorage = localStorage.getItem('session_id');
+
   // only run this effect if the token changes
   useEffect(() => {
     const loginUser = async () => {
@@ -104,7 +112,8 @@ const NavBar = () => {
               <Button
                 color="inherit"
                 component={Link}
-                to={`/profile/:id`}
+                // to={`/profile/:id`}
+                to={`/profile/${user.id}`}
                 className={classes.linkButton}
                 onClick={() =>
                   console.log('Else is the athenicated button clicked')
@@ -129,7 +138,7 @@ const NavBar = () => {
               variant="temporary"
               anchor="right"
               open={mobileOpen}
-              onClose={() => setMobileOpen((prev) => !prev)} // Corre ct way to toggle state
+              onClose={() => setMobileOpen((prev) => !prev)} // Correct way to toggle state
               classes={{ paper: classes.drawerPaper }}
               ModalProps={{ keepMounted: true }}
             >
